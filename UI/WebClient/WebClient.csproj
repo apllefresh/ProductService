@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -16,10 +15,19 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BusinessLogic.Contract">
+      <HintPath>..\..\BLL\BusinessLogic\bin\Debug\netcoreapp2.1\BusinessLogic.Contract.dll</HintPath>
+    </Reference>
+    <Reference Include="BusinessLogic.DI">
+      <HintPath>..\..\BLL\BusinessLogic.DI\bin\Debug\netcoreapp2.1\BusinessLogic.DI.dll</HintPath>
+    </Reference>
     <Reference Include="DataAccess">
       <HintPath>..\..\DAL\DataAccess.DI\bin\Debug\netcoreapp2.1\DataAccess.dll</HintPath>
     </Reference>
