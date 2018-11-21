@@ -9,4 +9,16 @@
     <PackageReference Include="AutoMapper" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="BusinessLogic">
+      <HintPath>..\BusinessLogic\bin\Debug\netcoreapp2.1\BusinessLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="BusinessLogic.Contract">
+      <HintPath>..\BusinessLogic.Contract\bin\Debug\netcoreapp2.1\BusinessLogic.Contract.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAccess.Contract">
+      <HintPath>..\BusinessLogic\bin\Debug\netcoreapp2.1\DataAccess.Contract.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -9,4 +9,10 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="DataAccess.Contract">
+      <HintPath>..\..\DAL\DataAccess.Contract\bin\Debug\netcoreapp2.1\DataAccess.Contract.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
