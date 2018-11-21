@@ -30,7 +30,7 @@ namespace WebClient
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddCors();
             var productConnectionString = Configuration.GetValue<string>("ConnectionStrings:ProductsConnection");
 
             var builder = new ContainerBuilder();
@@ -38,7 +38,7 @@ namespace WebClient
             builder.RegisterModule(new BusinessLogicAutofacModule());
 
             builder.Populate(services);
-            var container = builder.Build();
+            var container = builder.Build(); 
             return new AutofacServiceProvider(container);
         }
 
@@ -55,7 +55,13 @@ namespace WebClient
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
         }
     }
 }

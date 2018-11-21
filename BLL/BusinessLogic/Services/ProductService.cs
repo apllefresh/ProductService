@@ -3,6 +3,8 @@ using DataAccess.Contract.Interfaces;
 using DA = DataAccess.Contract.Models;
 using BL = BusinessLogic.Contract.Models;
 using BLI = BusinessLogic.Contract.Interfaces;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace BusinessLogic.Services
 {
@@ -15,6 +17,12 @@ namespace BusinessLogic.Services
         {
             _repository = repository;
             _mapper = mapper;
+        }
+
+        public async Task<BL.Product> GetItemByEan(string ean)
+        {
+            var items = await _repository.Find(p=> p.Ean == ean).ConfigureAwait(false);
+            return items.Select(item => _mapper.Map<BL.Product>(item)).FirstOrDefault();
         }
     }
 }
