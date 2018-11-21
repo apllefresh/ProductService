@@ -10,6 +10,14 @@ namespace DataAccess.DI
 {
     public class DataAccessAutofacModule : Module
     {
+        private readonly string _productConnectionString;
+
+        public DataAccessAutofacModule(string productConnectionString)
+        {
+            _productConnectionString = productConnectionString
+                ?? throw new ArgumentNullException(nameof(productConnectionString));
+        }
+
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DepartmentRepository>()
@@ -21,10 +29,12 @@ namespace DataAccess.DI
             builder.RegisterType<ProductRepository>()
                 .As<IProductRepository>()
                 .InstancePerLifetimeScope();
-           
-            builder.RegisterType<DataAccessContext>()
-                .As<DataAccessContext>()
-                .InstancePerLifetimeScope();
+
+            builder.Register(context => new DataAccessContext
+            (
+               connectionString: _productConnectionString
+            )).AsSelf()
+            .InstancePerLifetimeScope();
 
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
             builder.RegisterAssemblyTypes(assemblies)
